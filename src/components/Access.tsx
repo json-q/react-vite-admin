@@ -1,9 +1,9 @@
-import type { Auth } from '@/apis/mock/typings';
+import type { Mock } from '@/apis/mock/typings';
 import useAccess from '@/hooks/useAccess';
 import type { FC, PropsWithChildren } from 'react';
 
 interface AccessProps {
-  access: Auth | Auth[];
+  access: Mock.Auth | Mock.Auth[];
 }
 
 const Access: FC<PropsWithChildren<AccessProps>> = ({ access, children }) => {

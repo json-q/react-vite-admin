@@ -1,4 +1,4 @@
-import type { Auth } from '@/apis/mock/typings';
+import type { Mock } from '@/apis/mock/typings';
 import useAllStores from '@/stores';
 
 /**
@@ -6,7 +6,7 @@ import useAllStores from '@/stores';
  * @param access 权限 string | string[]
  * @returns boolean
  */
-const useAccess = (access: Auth | Auth[]) => {
+const useAccess = (access: Mock.Auth | Mock.Auth[]) => {
   const currentUser = useAllStores((state) => state.currentUser);
   const auth = currentUser?.auth || [];
 

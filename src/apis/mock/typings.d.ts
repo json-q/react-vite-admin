@@ -7,7 +7,7 @@ export namespace Mock {
     auth: Auth[];
   }
 
-  export type Auth = 'admin' | 'user' | 'visitor';
+  type Auth = 'admin' | 'user' | 'visitor';
 
   export interface UserInfo {
     userInfo: UserInfoDetail;
