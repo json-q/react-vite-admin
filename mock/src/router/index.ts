@@ -1,6 +1,6 @@
 import express from 'express';
 import { mock } from 'mockjs';
-import R from './config';
+import R from '../config';
 
 type Pagination = {
   current?: number;
