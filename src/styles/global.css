@@ -1,0 +1,72 @@
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  color: rgb(42 46 54 / 88%);
+  font-size: 14px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
+    'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
+    'Noto Color Emoji';
+}
+
+body {
+  text-rendering: optimizelegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+canvas {
+  display: block;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+.colorWeak {
+  filter: invert(80%);
+}
+
+.ant-layout {
+  min-height: 100vh;
+}
+
+.ant-pro-sider.ant-layout-sider.ant-pro-sider-fixed {
+  left: unset;
+}
+
+@media (width <= 768px) {
+  .ant-table {
+    width: 100%;
+    overflow-x: auto;
+  }
+
+  .ant-table-thead > tr > th,
+  .ant-table-thead > tr > td,
+  .ant-table-tbody > tr > th,
+  .ant-table-tbody > tr > td {
+    white-space: pre-wrap;
+  }
+
+  .ant-table-thead > tr > th > span,
+  .ant-table-thead > tr > td > span,
+  .ant-table-tbody > tr > th > span,
+  .ant-table-tbody > tr > td > span {
+    display: block;
+  }
+}
+
+/* 复写浏览器滚动条 */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+  margin-right: 4px;
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-corner {
+  display: none;
+}

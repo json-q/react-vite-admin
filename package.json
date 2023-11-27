@@ -1,0 +1,64 @@
+{
+  "name": "vite-react-templete",
+  "private": true,
+  "version": "0.0.0",
+  "author": "jsonqi",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "lint:fix": "eslint --ext .tsx,.ts src/ --fix",
+    "preview": "vite preview",
+    "prettier": "prettier --write .",
+    "prepare": "husky install"
+  },
+  "dependencies": {
+    "@ant-design/icons": "^5.2.6",
+    "@ant-design/pro-components": "2.6.43",
+    "ahooks": "^3.7.8",
+    "antd": "5.11.4",
+    "antd-style": "^3.5.2",
+    "axios": "1.6.2",
+    "crypto-js": "^4.2.0",
+    "dayjs": "^1.11.10",
+    "immer": "^10.0.3",
+    "jsencrypt": "^3.3.2",
+    "keepalive-for-react": "^1.0.20",
+    "nprogress": "^0.2.0",
+    "qs": "^6.11.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.20.0",
+    "zustand": "^4.4.6"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^18.4.3",
+    "@commitlint/config-conventional": "^18.4.3",
+    "@types/crypto-js": "^4.2.1",
+    "@types/nprogress": "^0.2.3",
+    "@types/qs": "^6.9.10",
+    "@types/react": "^18.2.38",
+    "@types/react-dom": "^18.2.17",
+    "@types/react-router-dom": "^5.3.3",
+    "@umijs/fabric": "^4.0.1",
+    "@vitejs/plugin-react": "4.2.0",
+    "autoprefixer": "^10.4.16",
+    "eslint-plugin-react-refresh": "^0.4.4",
+    "husky": "^8.0.3",
+    "lint-staged": "^15.1.0",
+    "postcss": "^8.4.31",
+    "rollup-plugin-visualizer": "^5.9.3",
+    "tailwindcss": "^3.3.5",
+    "terser": "^5.24.0",
+    "typescript": "^5.3.2",
+    "vite": "^5.0.2"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "main": "index.js",
+  "license": "MIT"
+}

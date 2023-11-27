@@ -1,0 +1,26 @@
+{
+  "editor.formatOnSave": true,
+  "stylelint.enable": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.stylelint": true
+  },
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "eslint.codeAction.showDocumentation": {
+    // 启用文档提示
+    "enable": true
+  },
+  "eslint.options": {
+    // 指定vscode的eslint所处理的文件的后缀
+    "extensions": [".js", ".ts", ".tsx"]
+  },
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "html",
+    "react",
+    "typescript",
+    "typescriptreact"
+  ],
+  "stylelint.validate": ["css", "less", "postcss", "scss", "sass"],
+  "files.eol": "\n"
+}

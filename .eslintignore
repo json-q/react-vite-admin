@@ -1,0 +1,12 @@
+*.sh
+node_modules
+*.woff
+*.ttf
+.vscode
+.idea
+dist
+.husky
+.local
+/bin
+mock
+

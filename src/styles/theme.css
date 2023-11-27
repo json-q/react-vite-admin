@@ -1,0 +1,28 @@
+/* 暗黑主题：滚动条样式 */
+html[data-theme='dark'] ::-webkit-scrollbar-thumb {
+  background-color: rgb(42 46 54 / 15%);
+  background-color: #9093994d;
+  border-radius: 4px;
+}
+
+html[data-theme='dark'] ::-webkit-scrollbar-track {
+  background-color: #424242;
+}
+
+/* 亮色主题：滚动条样式 */
+html[data-theme='light'] ::-webkit-scrollbar-thumb {
+  background-color: #c1c1c1;
+  border-radius: 4px;
+}
+
+html[data-theme='light'] ::-webkit-scrollbar-track {
+  background-color: #f1f1f1;
+}
+
+/* 亮色主题下，菜单暗色主题，避免视觉上的颜色对比冲突 */
+html[data-theme='light']
+  .ant-layout
+  .ant-layout-sider
+  .ant-menu.ant-menu-dark::-webkit-scrollbar-track {
+  background-color: #001529;
+}

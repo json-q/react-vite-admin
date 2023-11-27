@@ -1,0 +1,49 @@
+.container-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100vh;
+  color: rgb(0 0 0 88%);
+  font-size: 14px;
+  line-height: 2;
+}
+
+table {
+  margin: 0;
+  overflow: auto hidden;
+  empty-cells: show;
+  border: 1px solid rgb(5 5 5 60%);
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.container-page table td:first-child {
+  border-left: 1px solid rgb(5 5 5 60%);
+}
+
+.container-page table td {
+  padding: 12px 24px;
+  text-align: left;
+  border: 1px solid rgb(5 5 5 60%);
+}
+
+.container-page table th {
+  margin: 0;
+  padding: 12px 24px;
+  color: #5c6b77;
+  font-weight: 500;
+  white-space: nowrap;
+  text-align: left;
+  background: rgb(0 0 0 60%);
+  border: 1px solid rgb(5 5 5 60%);
+  border-width: 1px 1px 2px;
+}
+
+.container-page table tbody tr {
+  transition: all 0.3s;
+}
+
+.container-page table tbody tr:hover {
+  background-color: #f7f9f9;
+}
