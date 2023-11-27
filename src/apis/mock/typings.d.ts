@@ -1,5 +1,5 @@
 export namespace Mock {
-  export interface UserInfoDetail {
+  interface UserInfoDetail {
     nickName: string;
     id: string;
     avator: string;
@@ -9,17 +9,17 @@ export namespace Mock {
 
   type Auth = 'admin' | 'user' | 'visitor';
 
-  export interface UserInfo {
+  interface UserInfo {
     userInfo: UserInfoDetail;
   }
 
-  export interface LoginParams {
+  interface LoginParams {
     username: string;
     password: string;
     captcha: string;
   }
 
-  export interface TableListType {
+  interface TableListType {
     id: string;
     description: string;
     name: string;
