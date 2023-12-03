@@ -9,10 +9,6 @@ yarn add xxx # npm install xxx
 yarn remove xxx # npm uninstall xxx
 ```
 
-预览地址：https://react-vite-admin-chi.vercel.app
-
-线上若预览接口访问出错，请挂梯子访问。
-
 ## 功能预览
 
 ![整体界面](https://cdn.jsdelivr.net/gh/json-q/picture-bed@main/2023/12202312031540183.png)
