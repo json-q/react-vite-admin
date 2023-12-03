@@ -9,6 +9,16 @@ yarn add xxx # npm install xxx
 yarn remove xxx # npm uninstall xxx
 ```
 
+预览地址：https://react-vite-admin-chi.vercel.app
+
+线上若预览接口访问出错，请挂梯子访问。
+
+## 功能预览
+
+![整体界面](https://cdn.jsdelivr.net/gh/json-q/picture-bed@main/2023/12202312031540183.png)
+
+![本地化设置](https://cdn.jsdelivr.net/gh/json-q/picture-bed@main/2023/12202312031541594.png)
+
 ## 项目启动
 
 该项目初始化使用 node 作为本地服务器，若要正常启动前台项目，需要对 `mock` 文件夹下的项目做初始化和运行
@@ -18,7 +28,7 @@ yarn remove xxx # npm uninstall xxx
 ```bash
 cd mock
 npm install
-npm start
+npm run start
 ```
 
 - 前台服务
