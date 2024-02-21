@@ -2,6 +2,7 @@ import react from '@vitejs/plugin-react';
 import path from 'path';
 import { visualizer } from 'rollup-plugin-visualizer';
 import { defineConfig, loadEnv, type ConfigEnv, type UserConfig } from 'vite';
+import viteCompression from 'vite-plugin-compression';
 
 type Recordable<T = any> = Record<string, T>;
 interface ViteEnv {
@@ -12,6 +13,7 @@ interface ViteEnv {
   VITE_OPEN: boolean;
   VITE_DROP_CONSOLE: boolean;
   VITE_REPORT: boolean;
+  VITE_BUILD_GZIP: boolean;
 }
 
 /** 对获取的环境变量做类型转换 */
@@ -54,7 +56,11 @@ export default defineConfig((mode: ConfigEnv): UserConfig => {
         },
       },
     },
-    plugins: [react(), viteEnv.VITE_REPORT && visualizer()],
+    plugins: [
+      react(),
+      viteEnv.VITE_REPORT && visualizer(),
+      viteEnv.VITE_BUILD_GZIP && viteCompression(), // 详细配置可见对应 TS 类型
+    ],
     esbuild: {
       pure: viteEnv.VITE_DROP_CONSOLE ? ['console.log', 'debugger'] : [],
     },

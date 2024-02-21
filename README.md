@@ -1,13 +1,7 @@
 # 项目概述
 
 - vite + react 项目。
-- 由于 pnpm 的幽灵依赖会导致 `@umijs/fabric` 中的部分包依赖失败，若强制安装，则无法使用 `pnpm` 的特性。故推荐使用 `yarn` 或者 `npm` 初始化项目
-
-```shell
-yarn install # npm install
-yarn add xxx # npm install xxx
-yarn remove xxx # npm uninstall xxx
-```
+- 由于 pnpm 的幽灵依赖会导致 `@umijs/fabric` 中的上层依赖安装失败。推荐使用 `yarn` 或者 `npm` 初始化项目
 
 ## 功能预览
 
