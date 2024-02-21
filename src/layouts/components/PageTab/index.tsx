@@ -1,4 +1,3 @@
-import { message } from '@/hooks/useAppStatic';
 import { KeepAliveRefContext } from '@/layouts';
 import useAllStores from '@/stores';
 import { Tabs } from 'antd';
@@ -14,6 +13,7 @@ const LayoutPageTab: React.FC = () => {
   const { pathname } = useLocation();
   const keepAliveRef = useContext(KeepAliveRefContext);
   const [activeKey, setActiveKey] = useState<string>();
+  const { styles } = useTabStyles();
   const { cacheRoutes, actionCacheRoutes } = useAllStores(
     (state) => ({
       cacheRoutes: state.cacheRoutes,
@@ -21,9 +21,9 @@ const LayoutPageTab: React.FC = () => {
     }),
     shallow,
   );
-  const { styles } = useTabStyles();
 
   useEffect(() => {
+    // 初次加载和后续切换 tab
     setActiveKey(pathname);
   }, [pathname]);
 
@@ -34,13 +34,12 @@ const LayoutPageTab: React.FC = () => {
   };
 
   const removePage = (targetKey: TargetKey) => {
-    if (cacheRoutes.length <= 1) return message.error('页签最少保留一项');
     // 将当前项从cache中删除，并重新赋值
     const delTarget = cacheRoutes.filter((item) => item.key !== targetKey);
     actionCacheRoutes(delTarget);
     keepAliveRef?.current?.removeCache(targetKey as string);
     // 关闭的页签是当前页面，默认跳转到最后一个页签
-    targetKey === pathname && navigate(delTarget.at(-1)!.key);
+    targetKey === pathname && navigate(delTarget[delTarget.length - 1].key);
   };
 
   return (

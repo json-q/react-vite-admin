@@ -9,8 +9,11 @@ import { matchRoutes, useLocation, useNavigate } from 'react-router-dom';
 import { shallow } from 'zustand/shallow';
 
 const getOpenKeys = (pathname: string) => {
-  let pathStr: string = '';
   const openKeys: string[] = [];
+  const matchData = matchRoutes([...noAuthRoutes, ...layoutRouters], pathname) || [];
+  if (matchData[matchData?.length - 1]?.route.hideMenu) return openKeys; //非菜单路由，直接返回
+
+  let pathStr: string = '';
   const pathSplitArr = pathname.split('/').map((i) => '/' + i);
   // 循环时，去除根路径的 / 和当前路径
   for (let i = 1; i < pathSplitArr.length - 1; i++) {
@@ -23,6 +26,8 @@ const getOpenKeys = (pathname: string) => {
 const useMenuState = () => {
   const navigate = useNavigate();
   const { pathname, search } = useLocation();
+  console.log(useLocation());
+
   const [selectKey, setSelecyKey] = useState('');
   const [openKeys, setOpenKeys] = useState<string[]>([]);
   const { token } = theme.useToken();
@@ -52,33 +57,34 @@ const useMenuState = () => {
     layoutMode === 'top' && setOpenKeys([]);
   }, [pathname, collapsed, layoutMode]);
 
-  const getCacheData = (selectKey: string, search: string, cacheRoutes: CacheRoutesConfig[]) => {
-    if (!selectKey) return []; // 最初加载时，key为空
+  useEffect(() => {
+    // selectKey 首次加载为空，此时不执行缓存路由信息的步骤，否则会导致 tabs 中存在空 TabItem
+    if (selectKey) {
+      const newCache = getCacheData(selectKey, search, cacheRoutes);
+      actionCacheRoutes(newCache);
+    }
+  }, [selectKey]);
+
+  function getCacheData(selectKey: string, search: string, cacheRoutes: CacheRoutesConfig[]) {
     const _cache: CacheRoutesConfig[] = JSON.parse(JSON.stringify(cacheRoutes));
     // 根据 path 匹配路由对应的数据
     const matched = matchRoutes([...noAuthRoutes, ...layoutRouters], selectKey) || [];
+    console.log(matched);
+
     const matchData = matched[matched.length - 1]?.route;
     const i = _cache.findIndex((item) => item.key === selectKey); // 查找是否已缓存该页面
+
     if (i === -1) {
       _cache.push({
         label: matchData!.name || '',
-        key: matchData.path || '',
+        key: pathname || '', // 这里不能使用 route.path，因为可能是动态路由 /:id
         state: search,
       });
-      return _cache;
     } else {
-      if (_cache[i].state === search) return _cache;
-      else {
-        _cache[i].state = search;
-        return _cache;
-      }
+      if (_cache[i].state != search) _cache[i].state = search;
     }
-  };
-
-  useEffect(() => {
-    const newCache = getCacheData(selectKey, search, cacheRoutes);
-    actionCacheRoutes(newCache);
-  }, [selectKey]);
+    return _cache;
+  }
 
   /**
    * 菜单的 onClick 事件

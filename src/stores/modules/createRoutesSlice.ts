@@ -5,6 +5,7 @@ export interface CacheRoutesConfig {
   label: string;
   key: string;
   state?: string;
+  closable?: boolean;
 }
 
 export type AuthRoutesSliceType = {
@@ -19,7 +20,7 @@ const createUserSlice: StateCreator<
   [['zustand/immer', never], ['zustand/devtools', never]]
 > = (set) => ({
   authRoutes: [],
-  cacheRoutes: [],
+  cacheRoutes: [{ label: '首页', key: '/home', state: '', closable: false }], // 首页默认展示，无法关闭且在第一位
   actionAuthRoutes: (authRoutes) => set(() => ({ authRoutes })),
   actionCacheRoutes: (cacheRoutes) => set(() => ({ cacheRoutes })),
 });

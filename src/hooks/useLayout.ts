@@ -14,16 +14,18 @@ export type MenuItem = Required<MenuProps>['items'][number] & SubMenuType;
 const generateMenu = (authRouters: MetaMenuAuthRouteObject[]) => {
   const menus: MenuItem[] = [];
   authRouters.forEach((item) => {
-    const menuItem = {
-      key: item.path,
-      label: item.name,
-      icon: item.icon,
-    } as MenuItem;
-    if (Array.isArray(item.children) && item.children.length > 0) {
-      const childrens = generateMenu(item.children);
-      menuItem.children = childrens;
+    if (!item.hideMenu) {
+      const menuItem = {
+        key: item.path,
+        label: item.name,
+        icon: item.icon,
+      } as MenuItem;
+      if (Array.isArray(item.children) && item.children.length > 0) {
+        const childrens = generateMenu(item.children);
+        menuItem.children = childrens;
+      }
+      menus.push(menuItem);
     }
-    menus.push(menuItem);
   });
   return menus;
 };

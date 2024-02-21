@@ -16,11 +16,13 @@ const Access = lazy(() => import('@/pages/Access'));
 const TableList = lazy(() => import('@/pages/TableList'));
 const KeepComp = lazy(() => import('@/pages/KeepComp'));
 const Test = lazy(() => import('@/pages/Test'));
+const DynamicRoute = lazy(() => import('@/pages/DynamicRoute'));
 const NotFound = lazy(() => import('@/pages/404'));
 
 type MetaMenu = {
   name?: string;
   icon?: React.ReactNode;
+  hideMenu?: boolean; // 该页面是否挂载到菜单栏中，默认 false
 };
 type Cache = {
   noCache?: boolean; // 默认全部缓存，不缓存，需明确设置到某个组件
@@ -28,6 +30,7 @@ type Cache = {
 
 export type MetaMenuAuthRouteObject = AuthRouteObject<MetaMenu & Cache>;
 
+// 动态路由正常情况下是不会在 Menu 中显示，请尽量配置 hideMenu:true
 export const layoutRouters: MetaMenuAuthRouteObject[] = [
   {
     path: '/',
@@ -79,58 +82,15 @@ export const layoutRouters: MetaMenuAuthRouteObject[] = [
             path: '/test/t2',
             name: '测试2',
             element: <Test />,
-          },
-          {
-            path: '/test/t3',
-            name: '测试3',
-            element: <Test />,
-          },
-          {
-            path: '/test/t4',
-            name: '测试4',
-            element: <Test />,
-          },
-          {
-            path: '/test/t5',
-            name: '测试5',
-            element: <Test />,
-          },
-          {
-            path: '/test/t6',
-            name: '测试6',
-            element: <Test />,
-          },
-          {
-            path: '/test/t7',
-            name: '测试7',
-            element: <Test />,
-          },
-          {
-            path: '/test/t8',
-            name: '测试8',
-            element: <Test />,
-          },
-          {
-            path: '/test/t9',
-            name: '测试9',
-            element: <Test />,
-          },
-          {
-            path: '/test/t10',
-            name: '测试10',
-            element: <Test />,
-          },
-          {
-            path: '/test/t11',
-            name: '测试11',
-            element: <Test />,
-          },
-          {
-            path: '/test/t12',
-            name: '测试12',
-            element: <Test />,
+            hideMenu: true,
           },
         ],
+      },
+      {
+        path: '/dynamic-router/:id',
+        name: '动态路由',
+        element: <DynamicRoute />,
+        hideMenu: true,
       },
     ],
   },
