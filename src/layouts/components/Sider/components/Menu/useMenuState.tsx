@@ -26,7 +26,6 @@ const getOpenKeys = (pathname: string) => {
 const useMenuState = () => {
   const navigate = useNavigate();
   const { pathname, search } = useLocation();
-  console.log(useLocation());
 
   const [selectKey, setSelecyKey] = useState('');
   const [openKeys, setOpenKeys] = useState<string[]>([]);
@@ -69,7 +68,6 @@ const useMenuState = () => {
     const _cache: CacheRoutesConfig[] = JSON.parse(JSON.stringify(cacheRoutes));
     // 根据 path 匹配路由对应的数据
     const matched = matchRoutes([...noAuthRoutes, ...layoutRouters], selectKey) || [];
-    console.log(matched);
 
     const matchData = matched[matched.length - 1]?.route;
     const i = _cache.findIndex((item) => item.key === selectKey); // 查找是否已缓存该页面
