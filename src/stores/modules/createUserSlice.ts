@@ -5,7 +5,7 @@ import type { StateCreator } from 'zustand';
 export type UserSliceType = {
   currentUser?: Mock.UserInfoDetail;
   fetchCurrentUser: (path: string) => Promise<void>;
-  resetCurrentUser: () => void;
+  resetCurrentState: () => void;
 };
 
 const createUserSlice: StateCreator<
@@ -17,6 +17,11 @@ const createUserSlice: StateCreator<
     const { data } = await getUserInfo();
     set({ currentUser: data.userInfo });
   },
-  resetCurrentUser: () => set(() => ({ currentUser: undefined, authRoutes: [] })),
+  resetCurrentState: () =>
+    set(() => ({
+      currentUser: undefined,
+      authRoutes: [],
+      cacheRoutes: [{ label: '首页', key: '/home', state: '', closable: false }],
+    })),
 });
 export default createUserSlice;

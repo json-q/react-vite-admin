@@ -33,11 +33,10 @@ const items: MenuProps['items'] = [
 const PersonCenter: React.FC = () => {
   const navigate = useNavigate();
   const keepAliveRef = useContext(KeepAliveRefContext);
-  const { currentUser, actionAuthRoutes, resetCurrentUser } = useAllStores(
+  const { currentUser, resetCurrentState } = useAllStores(
     (state) => ({
       currentUser: state.currentUser,
-      actionAuthRoutes: state.actionAuthRoutes,
-      resetCurrentUser: state.resetCurrentUser,
+      resetCurrentState: state.resetCurrentState,
     }),
     shallow,
   );
@@ -46,9 +45,8 @@ const PersonCenter: React.FC = () => {
     const { code } = await logout();
     if (code === 200) {
       localCacha.remove(TOKEN_CACHE);
-      actionAuthRoutes([]);
-      resetCurrentUser();
       keepAliveRef?.current?.cleanAllCache();
+      resetCurrentState();
       message.success('退出成功');
       navigate(LOGIN_PATH);
     }
