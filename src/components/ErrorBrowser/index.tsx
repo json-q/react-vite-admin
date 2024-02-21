@@ -1,4 +1,4 @@
-import './index.css';
+import styles from './index.module.css';
 
 const dataSource = [
   {
@@ -29,7 +29,7 @@ const dataSource = [
 
 const ErrorBrowser: React.FC = () => {
   return (
-    <div className="container-page">
+    <div className={styles['container-page']}>
       <div>
         <h2>兼容环境</h2>
         <p>

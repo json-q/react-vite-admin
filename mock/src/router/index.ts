@@ -14,11 +14,11 @@ const VisitorToken = 'visitor_token';
 const PublickKey = '_10000X1_1X0000';
 const avator = 'https://gw.alipayobjects.com/zos/rmsportal/BiazfanxmamNRoxxVxka.png';
 
-const lazy = () => {
+const lazy = (duration = 2000) => {
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve('');
-    }, 2000);
+    }, duration);
   });
 };
 
@@ -77,23 +77,48 @@ export default (app: express.Router) => {
   // 表格数据
   app.get('/list', async (req: { query: Pagination }, res, next) => {
     const { current, pageSize } = req.query;
-    const data = mock({
-      'list|10': [
-        {
-          id: '@guid',
-          description: '@cparagraph(2, 5)',
-          name: '@cname',
-          county: '@county(true)',
-          zip: '@zip',
-          ip: '@ip',
-          status: "@pick(['关闭', '运行中', '异常'])",
-          updateTime: '@datetime',
-        },
-      ],
-      current: Number(current),
-      pageSize: Number(pageSize),
-      total: 102,
-    });
+    const t = Number(current) * Number(pageSize);
+    let data = [];
+    if (t <= 100) {
+      data = mock({
+        'list|10': [
+          {
+            id: '@guid',
+            description: '@cparagraph(2, 5)',
+            name: '@cname',
+            county: '@county(true)',
+            zip: '@zip',
+            ip: '@ip',
+            status: "@pick(['关闭', '运行中', '异常'])",
+            updateTime: '@datetime',
+          },
+        ],
+        current: Number(current),
+        pageSize: Number(pageSize),
+        total: 104,
+      });
+    } else if (t > 104 && t <= 110) {
+      data = mock({
+        'list|4': [
+          {
+            id: '@guid',
+            description: '@cparagraph(2, 5)',
+            name: '@cname',
+            county: '@county(true)',
+            zip: '@zip',
+            ip: '@ip',
+            status: "@pick(['关闭', '运行中', '异常'])",
+            updateTime: '@datetime',
+          },
+        ],
+        current: Number(current),
+        pageSize: Number(pageSize),
+        total: 104,
+      });
+    } else {
+      data = [];
+    }
+
     await lazy();
     res.send(R.ok(data));
   });
