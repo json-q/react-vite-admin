@@ -14,8 +14,8 @@ import ErrorBrowser from './components/ErrorBrowser';
 import { overridesTheme } from './config/themeConfig';
 import useAllStores from './stores';
 import './styles/index.css';
-
 import supportBrowser from './utils/supportBrowser';
+
 dayjs.locale('zh-cn');
 
 const Main: React.FC = () => {
@@ -34,14 +34,13 @@ const Main: React.FC = () => {
 
   const mixinTheme: ThemeConfig = {
     ...overridesTheme,
-    ...{
-      token: {
-        colorPrimary,
-      },
-      algorithm: sizeMode === 'default' ? undefined : theme.compactAlgorithm,
+    token: {
+      colorPrimary,
     },
+    algorithm: sizeMode === 'default' ? undefined : theme.compactAlgorithm,
   };
 
+  // 未提供 Polyfill 支持，若浏览器环境不支持 antd 的最新版，返回提示页面
   if (!supportBrowser()) return <ErrorBrowser />;
 
   return (

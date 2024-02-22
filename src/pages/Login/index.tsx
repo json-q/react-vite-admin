@@ -5,16 +5,24 @@ import { message } from '@/hooks/useAppStatic';
 import localCacha from '@/utils/localCacha';
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import { LoginFormPage, ProFormCaptcha, ProFormText } from '@ant-design/pro-components';
+import { useEventListener } from 'ahooks';
 import { Divider, theme } from 'antd';
 import { ThemeProvider } from 'antd-style';
+import { useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
+import initLoginBg from './bg';
 
 const LoginPage = () => {
   const navigate = useNavigate();
-
+  const canvansRef = useRef(null);
   const {
     token: { colorTextPlaceholder, colorText },
   } = theme.useToken();
+  useEventListener('resize', () => initLoginBg(), { target: window });
+
+  useEffect(() => {
+    initLoginBg();
+  }, []);
 
   const handleSubmit = async (values: Mock.LoginParams) => {
     const { data, code } = await login(values);
@@ -27,9 +35,10 @@ const LoginPage = () => {
 
   return (
     <div className="bg-white h-screen">
+      {/* 用 cavans 星空图作为视频未加载完时的背景 */}
+      <canvas ref={canvansRef} id="canvas" className="block absolute" />
       <LoginFormPage
-        // backgroundImageUrl="https://mdn.alipayobjects.com/yuyan_qk0oxh/afts/img/V-_oS6r-i7wAAAAAAAAAAAAAFl94AQBr"
-        backgroundImageUrl="https://mdn.alipayobjects.com/huamei_gcee1x/afts/img/A*y0ZTS6WLwvgAAAAAAAAAAAAADml6AQ/fmt.webp"
+        // backgroundImageUrl="https://mdn.alipayobjects.com/huamei_gcee1x/afts/img/A*y0ZTS6WLwvgAAAAAAAAAAAAADml6AQ/fmt.webp"
         logo="https://github.githubassets.com/images/modules/logos_page/Octocat.png"
         backgroundVideoUrl="https://gw.alipayobjects.com/v/huamei_gcee1x/afts/video/jXRBRK_VAwoAAAAAAAAAAAAAK4eUAQBr"
         title={import.meta.env.VITE_APP_TITLE}
