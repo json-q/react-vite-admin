@@ -1,7 +1,7 @@
 # 项目概述
 
 - vite + react 项目。
-- 由于 pnpm 的幽灵依赖会导致 `@umijs/fabric` 中的上层依赖安装失败。推荐使用 `yarn` 或者 `npm` 初始化项目
+- 由于 pnpm 的幽灵依赖会导致 `@umijs/fabric` 中的上层依赖安装失败。推荐使用 `yarn` 或者 `npm` 初始化项目，或者在 .npmrc 文件中添加 `shamefully-hoist=true` 来强制打平 node_modules。
 
 ## 功能预览
 
@@ -43,7 +43,7 @@ npm run dev # yarn dev
 - UI 库
   - `AntDesign` [国内镜像](https://ant-design.antgroup.com/)
   - `ProComponents` [国内镜像](components.antdigital.dev)
-- 常用工具库
+    - 部分警告：由于 ProComponents 需要兼容 antd@4，部分特性无法更改，警告为正常现象
   - `dayjs` antd 内置时间库
   - `ahooks` react hooks 工具库。常用如 useRequest，类 class 的 setState 等等。[ahooks 官网](https://ahooks.js.org/zh-CN)
   - `qs` 请求参数序列化

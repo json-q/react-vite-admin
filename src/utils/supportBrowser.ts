@@ -1,8 +1,7 @@
 /** 是否支持 where 选择器 */
 function isSupportedBrowser() {
-  if (!window.CSS) {
-    return false;
-  }
+  if (!window.CSS) return false;
+
   return CSS.supports('inset:0px') && CSS.supports('selector(:where(body))');
 }
 
