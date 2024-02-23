@@ -16,4 +16,6 @@ export const overridesTheme: ThemeConfig = {
   components: {
     Layout: { headerHeight: 55 },
   },
+  cssVar: true,
+  hashed: false,
 };
